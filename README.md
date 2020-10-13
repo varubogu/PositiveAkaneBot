@@ -1,0 +1,2 @@
+# PositiveAkaneBot
+何でも肯定してくれるアカネチャンbot
