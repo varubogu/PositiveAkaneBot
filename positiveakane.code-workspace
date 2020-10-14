@@ -1,0 +1,19 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {},
+	"launch": {
+		"version": "0.2.0",
+		"configurations": [
+			{
+				"name": "Python: モジュール",
+				"type": "python",
+				"request": "launch",
+				"module": "main.py"
+			}
+		]
+	}
+}
