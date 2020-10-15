@@ -18,7 +18,7 @@ async def prefix_load(bot, message):
 bot = commands.Bot(command_prefix=prefix_load)
 
 @bot.event
-def ready():
+async def ready():
     print('init ok')
 
 @bot.command()
@@ -27,9 +27,15 @@ async def hello(ctx):
 
 
 @bot.command()
-async def set_prefix(ctx, prefix):
+async def prefix(ctx, prefix = None):
 
-    result = await prefix_manager.set(ctx.guild.id, prefix)
-    await ctx.send('アカネチャン呼び出す時の命令が "{0}" から" {1} に変わったで'.format(result[0], result[1]))
+    if ctx.author.bot: return
+
+    if prefix is None:
+        now_prefix = await prefix_manager.get(ctx.guild.id)
+        await ctx.send('アカネチャン呼び出す時の命令は "{0}" やで'.format(now_prefix))
+    else:
+        result = await prefix_manager.set(ctx.guild.id, prefix)
+        await ctx.send('アカネチャン呼び出す時の命令が "{0}" から "{1}" に変わったで～'.format(result[0], result[1]))
 
 bot.run(os.environ.get('DISCORD_BOT_TOKEN'))
