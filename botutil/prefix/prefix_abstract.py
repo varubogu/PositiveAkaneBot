@@ -5,7 +5,7 @@ from abc import ABCMeta, abstractmethod
 class PrefixAbstract(metaclass=ABCMeta):
 
     def __init__(self, prefix:str = None):
-        self.default_prefix:str = self._coalesce(prefix, os.environ.get('DEFAULT_PREFIX'), "!")
+        self.default_prefix:str = (prefix or os.environ.get('DEFAULT_PREFIX') or "!")
         self.guild_prefix_dict:dict[int, str] = {}
         self.is_loaded:bool = False
 
@@ -45,11 +45,3 @@ class PrefixAbstract(metaclass=ABCMeta):
 
     async def _get(self, guild_id:int):
         return self.guild_prefix_dict.get(guild_id, self.default_prefix)
-
-
-    def _coalesce(self, *args):
-        for arg in args:
-            if arg is not None:
-                return arg
-        raise ValueError()
-

@@ -8,7 +8,7 @@ class PrefixFile(PrefixAbstract):
 
     def __init__(self, prefix = None, prefix_file_path = None):
         super().__init__(prefix)
-        self.prefix_file_path = self._coalesce(prefix_file_path, (os.environ.get('PREFIX_FILE_PATH')), "prefix.json")
+        self.prefix_file_path = (prefix_file_path or os.environ.get('PREFIX_FILE_PATH') or "prefix.json")
 
 
     async def _load(self):
