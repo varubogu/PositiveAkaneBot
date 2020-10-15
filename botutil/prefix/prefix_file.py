@@ -24,7 +24,7 @@ class PrefixFile(PrefixAbstract):
         return result_prefix_dict
 
 
-    async def save(self, guild_id, after_prefix):
+    async def _save(self, guild_id, after_prefix):
 
         guild_id_str = str(guild_id)
 

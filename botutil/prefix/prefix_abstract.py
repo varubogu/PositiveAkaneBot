@@ -20,7 +20,7 @@ class PrefixAbstract(metaclass=ABCMeta):
     async def set(self, guild_id:int, after_prefix:str):
         self.is_loaded = False
         before_prefix = await self._get(guild_id)
-        await self.save(guild_id, after_prefix)
+        await self._save(guild_id, after_prefix)
         return (before_prefix, after_prefix)
 
 
@@ -38,7 +38,7 @@ class PrefixAbstract(metaclass=ABCMeta):
 
 
     @abstractmethod
-    async def save(self, guild_id, after_prefix):
+    async def _save(self, guild_id, after_prefix):
         pass
 
 
