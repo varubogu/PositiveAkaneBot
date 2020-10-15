@@ -10,6 +10,7 @@ load_dotenv()
 
 prefix_manager = PrefixFile()
 
+
 async def prefix_load(bot, message):
     prefix = await prefix_manager.get(message.guild.id)
     return commands.when_mentioned_or(prefix)(bot, message)
@@ -17,9 +18,11 @@ async def prefix_load(bot, message):
 
 bot = commands.Bot(command_prefix=prefix_load)
 
+
 @bot.event
 async def ready():
     print('init ok')
+
 
 @bot.command()
 async def hello(ctx):
@@ -27,9 +30,10 @@ async def hello(ctx):
 
 
 @bot.command()
-async def prefix(ctx, prefix = None):
+async def prefix(ctx, prefix=None):
 
-    if ctx.author.bot: return
+    if ctx.author.bot:
+        return
 
     if prefix is None:
         now_prefix = await prefix_manager.get(ctx.guild.id)
