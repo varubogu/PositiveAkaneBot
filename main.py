@@ -1,6 +1,5 @@
 import os
 
-import discord
 from discord.ext import commands
 from dotenv import load_dotenv
 
@@ -40,6 +39,8 @@ async def prefix(ctx, prefix=None):
         await ctx.send('アカネチャン呼び出す時の命令は "{0}" やで'.format(now_prefix))
     else:
         result = await prefix_manager.set(ctx.guild.id, prefix)
-        await ctx.send('アカネチャン呼び出す時の命令が "{0}" から "{1}" に変わったで～'.format(result[0], result[1]))
+        await ctx.send(
+            'アカネチャン呼び出す時の命令が "{0}" から "{1}" に変わったで～'
+            .format(result[0], result[1]))
 
 bot.run(os.environ.get('DISCORD_BOT_TOKEN'))
