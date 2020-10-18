@@ -23,6 +23,11 @@ async def ready():
     print('init ok')
 
 
+@bot.event
+async def on_command_error(ctx, error):
+    await ctx.send('そんなコマンド無いで')
+
+
 @bot.command()
 async def hello(ctx):
     await ctx.send("アカネチャンやで～")
